@@ -7,6 +7,24 @@ function msdlab_search_text($text) {
     return esc_attr( 'Begin your search here...' );
 }
 
+function msdlab_page_banner(){
+    global $post,$banner_metabox;
+    $background = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'page_banner' );
+    
+    $banner_metabox->the_meta();
+    $title = $banner_metabox->get_the_value('title');
+    $title = $title != ''?sprintf( '<h3>%s</h3>', apply_filters( 'genesis_post_title_text', $title ) ):'';
+    $subtitle = $banner_metabox->get_the_value('subtitle');
+    $subtitle = $subtitle != ''?sprintf( '<h4>%s</h4>', apply_filters( 'genesis_post_title_text', $subtitle ) ):'';
+    $ret = '<section class="banner">
+        <div class="wrap" style="background-image:url('.$background[0].')">
+            '.$title.
+            $subtitle.'
+        </wrap>
+       </section>';
+    print $ret;
+}
+
 /*** NAV ***/
 
 /*** SIDEBARS ***/

@@ -4,24 +4,31 @@
 ------------------------------------------------------------ */
 
 @import url(http://fonts.googleapis.com/css?family=Open+Sans);
+@import url(http://fonts.googleapis.com/css?family=Raleway:200,400,500,700);
 
 /* Font Stacks */
-.opensans {
-	font-family: "Open Sans", "Trebuchet MS", Calibri, sans-serif;
+.customsanserif(@size:1.4) {
+	font-family: "Raleway","Open Sans", "Trebuchet MS", Calibri, sans-serif;
+	font-weight: 400;
+	font-size: (@size*10)px;
+	font-size: @size rem;
 }
-.arial {
-    font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+.arial(@size:1.4) {
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: (@size*10)px;
+  font-size: @size rem;
 }
 
 /* Colors */
 @red: #f00;
 @orange: #f90;
 @yellow: #ff0;
-@green: #0f0;
+@green: #4F8956;
 @blue: #00f;
 @purple: #90f;
-@beige: #c96;
-@brown: #630;
+@beige: #AC9C83;
+@brown: #302120;
 
 @ltred: lighten(@red,20%);
 @dkred: darken(@red, 20%);
@@ -38,7 +45,7 @@
 @ltbeige: lighten(@beige,20%);
 @dkbeige: darken(@beige, 20%);
 @ltbrown: lighten(@brown,20%);
-@dkbrown: darken(@brown, 20%);
+@dkbrown: #221917;
 
 /* Neutrals */
 @white: #FFF;
@@ -107,6 +114,11 @@
 	height: 25px;
 	width: 25px;
 	cursor: pointer;
+}
+
+.theborder{
+  border: 1px solid @white;
+  border-top: 0;
 }
 
 /* Clears */

@@ -123,16 +123,31 @@ Site Navigation
 --------------------------------------------- */
 
 .nav-primary {
-  background-color: @white;
+  .wrap{
+    background-color: @brown;
+    border: 1px solid @white;
+    ul{
+      margin: 0;
+      padding-left: 140px;
+      li{
+        a{
+          .customsanserif();
+          padding: 1rem;
+          font-weight: 500;
+        }
+      }
+    }
+  }
 }
 
 .nav-primary a:hover,
 .nav-primary .current-menu-item > a {
-  color: @orange;
+  color: @beige;
 }
 
 .nav-primary .sub-menu a:hover {
-  color: @orange;
+  color: @white;
+  text-decoration: none;
 }
 
 /* Secondary Navigation

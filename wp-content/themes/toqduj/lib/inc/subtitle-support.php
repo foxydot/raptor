@@ -3,24 +3,24 @@
 if(!class_exists('WPAlchemy_MetaBox')){
 	include_once WP_CONTENT_DIR.'/wpalchemy/MetaBox.php';
 }
-//add_action('init','add_custom_metaboxes');
+add_action('init','add_custom_metaboxes');
 function add_custom_metaboxes(){
-	global $subtitle_metabox;
-    $subtitle_metabox = new WPAlchemy_MetaBox(array
+	global $banner_metabox;
+    $banner_metabox = new WPAlchemy_MetaBox(array
     (
-        'id' => '_subtitle',
-        'title' => 'Subtitle',
+        'id' => '_banner',
+        'title' => 'Banner',
         'types' => array('post','page'),
         'context' => 'normal', // same as above, defaults to "normal"
         'priority' => 'high', // same as above, defaults to "high"
-        'template' => get_stylesheet_directory() . '/lib/template/subtitle-meta.php',
+        'template' => get_stylesheet_directory() . '/lib/template/banner-meta.php',
         'autosave' => TRUE,
         'mode' => WPALCHEMY_MODE_EXTRACT, // defaults to WPALCHEMY_MODE_ARRAY
         'prefix' => '_msdlab_' // defaults to NULL
     ));
 }
-//add_action('admin_footer','subtitle_footer_hook');
-function subtitle_footer_hook()
+add_action('admin_footer','banner_footer_hook');
+function banner_footer_hook()
 {
 	?><script type="text/javascript">
 		jQuery('#titlediv').after(jQuery('#_subtitle_metabox'));
@@ -28,7 +28,7 @@ function subtitle_footer_hook()
 }
 
 // include css to help style our custom meta boxes
-//add_action( 'admin_print_scripts', 'my_metabox_styles' );
+add_action( 'admin_print_scripts', 'my_metabox_styles' );
  
 function my_metabox_styles()
 {
