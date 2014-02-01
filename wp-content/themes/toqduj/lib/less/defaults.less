@@ -33,17 +33,15 @@ textarea:focus,
 }
 
 ::-moz-selection {
-  background-color: #333;
-  color: #fff;
+  background-color: lighten(@green,20%);
 }
 
 ::selection {
-  background-color: #333;
-  color: #fff;
+  background-color: lighten(@green,20%);
 }
 
 a {
-  color: #666;
+  color: @green;
   text-decoration: none;
 }
 
@@ -53,7 +51,7 @@ a img {
 }
 
 a:hover {
-  color: #333;
+  color: @ltbrown;
 }
 
 p {
@@ -111,9 +109,9 @@ h3,
 h4,
 h5,
 h6 {
-  color: #333;
-  font-family: Lato, sans-serif;
-  font-weight: 700;
+  .customsanserif();
+  font-weight: 200;
+  color: @green;
   line-height: 1.2;
   margin: 0 0 16px;
   margin: 0 0 1.6rem;

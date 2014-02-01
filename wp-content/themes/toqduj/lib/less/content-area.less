@@ -10,17 +10,14 @@ Content Area
   border-radius: 3px;
   margin-bottom: 40px;
   margin-bottom: 4rem;
-  padding: 40px 40px 24px;
-  padding: 4rem 4rem 2.4rem;
+  padding: 20px 0;
+  padding: 2rem 0;
 }
 
 .entry-content a {
-  border-bottom: 1px solid #ddd;
-  color: #f15123;
 }
 
 .entry-content a:hover {
-  color: #333;
 }
 
 .entry-content .attachment a,
@@ -38,8 +35,6 @@ Content Area
 
 .entry-content ol,
 .entry-content ul {
-  margin-left: 40px;
-  margin-left: 4rem;
 }
 
 .entry-content ol li {
@@ -47,7 +42,10 @@ Content Area
 }
 
 .entry-content ul li {
-  list-style-type: disc;
+  i{
+    color: green;
+    font-size: 1.25em;
+  }
 }
 
 .entry-content ol ol,
@@ -55,18 +53,28 @@ Content Area
   margin-bottom: 0;
 }
 
+.entry-content{
+  ol,ul{
+    li{
+      margin-bottom: 1rem;
+      strong,b{
+        font-weight: 700;
+        color: @green;
+      }
+    }
+  }
+}
+
 .entry-content .search-form {
   width: 50%;
 }
 
 .entry-meta {
-  color: #999;
   font-size: 14px;
   font-size: 1.4rem;
 }
 
 .entry-meta a {
-  border-bottom: 1px solid #ddd;
 }
 
 .entry-header .entry-meta {

@@ -2,6 +2,7 @@
 /*** GENERAL ***/
 add_theme_support( 'html5' );//* Add HTML5 markup structure
 add_theme_support( 'genesis-responsive-viewport' );//* Add viewport meta tag for mobile browsers
+add_theme_support( 'genesis-structural-wraps', array( 'header', 'nav', 'subnav', 'inner', 'footer-widgets', 'footer' ) );
 
 /*** HEADER ***/
 add_filter( 'genesis_search_text', 'msdlab_custom_search_text' ); //customizes the serach bar placeholder

@@ -14,6 +14,12 @@ Structure and Layout
 .site-inner {
   clear: both;
   background: @white;
+  .wrap {
+    .make-row();
+    visibility: visible;
+    max-width: 960px;
+    margin: 0 auto;
+  }
 }
 
 /* Column Widths and Positions
@@ -24,7 +30,8 @@ Structure and Layout
 .content-sidebar-sidebar .content-sidebar-wrap,
 .sidebar-content-sidebar .content-sidebar-wrap,
 .sidebar-sidebar-content .content-sidebar-wrap {
-  width: 920px;
+  .make-md-column(9);
+  padding: 0;
 }
 
 .content-sidebar-sidebar .content-sidebar-wrap {
@@ -39,8 +46,8 @@ Structure and Layout
 /* Content */
 
 .content {
+  .make-md-column(9);
   float: right;
-  width: 740px;
 }
 
 .content-sidebar .content,
@@ -52,18 +59,18 @@ Structure and Layout
 .content-sidebar-sidebar .content,
 .sidebar-content-sidebar .content,
 .sidebar-sidebar-content .content {
-  width: 520px;
+  .make-md-column(8);
 }
 
 .full-width-content .content {
-  width: 100%;
+  .make-md-column(12);
 }
 
 /* Primary Sidebar */
 
 .sidebar-primary {
+  .make-md-column(3);
   float: right;
-  width: 360px;
 }
 
 .sidebar-content .sidebar-primary,
@@ -74,8 +81,8 @@ Structure and Layout
 /* Secondary Sidebar */
 
 .sidebar-secondary {
+  .make-md-column(4);
   float: left;
-  width: 180px;
 }
 
 .content-sidebar-sidebar .sidebar-secondary {

@@ -16,7 +16,6 @@ jQuery(document).ready(function($) {
 	$('div:nth-child(even)').addClass('even');
 	$('div:nth-child(odd)').addClass('odd');
 
-
 	$('#footer-widgets div.widget:first-child').addClass('first-child');
 	$('#footer-widgets div.widget:last-child').addClass('last-child');
 	$('#footer-widgets div.widget:nth-child(even)').addClass('even');
@@ -25,11 +24,6 @@ jQuery(document).ready(function($) {
 	var numwidgets = $('#footer-widgets div.widget').length;
 	$('#footer-widgets').addClass('cols-'+numwidgets);
 	
-	//special for lifestyle
-	$('.ftr-menu ul.menu>li').after(function(){
-		if(!$(this).hasClass('last-child') && $(this).hasClass('menu-item') && $(this).css('display')!='none'){
-			return '<li class="separator">|</li>';
-		}
-	});
-	
+	//font-awesome lists in content
+	$('.entry-content ul').addClass('fa-ul').find('li').prepend('<i class="fa-li fa fa-caret-right"></i>');
 });

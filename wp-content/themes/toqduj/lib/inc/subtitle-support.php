@@ -23,7 +23,8 @@ add_action('admin_footer','banner_footer_hook');
 function banner_footer_hook()
 {
 	?><script type="text/javascript">
-		jQuery('#titlediv').after(jQuery('#_subtitle_metabox'));
+        jQuery('#titlediv').after(jQuery('#_banner_metabox'));
+        //jQuery('#_banner_metabox').after(jQuery('#postimagediv'));		
 	</script><?php
 }
 
