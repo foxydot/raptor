@@ -13,6 +13,9 @@ add_filter( 'genesis_search_text', 'msdlab_custom_search_text' ); //customizes t
 remove_action( 'genesis_after_header', 'genesis_do_nav' );
 add_action( 'genesis_before_header', 'genesis_do_nav' );
 add_action('genesis_after_header','msdlab_page_banner');
+//add social to nav
+add_filter('genesis_nav_items','msdlab_social_nav',20, 2);
+add_filter('wp_nav_menu_items','msdlab_social_nav',20, 2);
 
 /*** SIDEBARS ***/
 add_action('genesis_before', 'msdlab_ro_layout_logic'); //This ensures that the primary sidebar is always to the left.
@@ -36,6 +39,6 @@ add_action('genesis_footer','msdlab_do_social_footer');//with a msdsocial suppor
 
 /*** HOMEPAGE (BACKEND SUPPORT) ***/
 add_action('after_setup_theme','msdlab_add_homepage_hero_flex_sidebars'); //creates widget areas for a hero and flexible widget area
-//add_action('after_setup_theme','msdlab_add_homepage_callout_sidebars'); //creates a widget area for a callout bar, usually between the hero and the widget area
+add_action('after_setup_theme','msdlab_add_homepage_callout_sidebars'); //creates a widget area for a callout bar, usually between the hero and the widget area
 
 add_action('wp_head', 'collections');

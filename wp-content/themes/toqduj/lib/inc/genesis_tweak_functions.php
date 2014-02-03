@@ -8,6 +8,8 @@ function msdlab_search_text($text) {
 }
 
 function msdlab_page_banner(){
+    if(is_front_page())
+    return;
     global $post,$banner_metabox;
     $background = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'page_banner' );
     
@@ -26,6 +28,20 @@ function msdlab_page_banner(){
 }
 
 /*** NAV ***/
+
+function msdlab_social_nav($menu,$args){
+    $args = (array)$args;
+    if ( 'primary' !== $args['theme_location'] )
+        return $menu;
+    if(class_exists('MSDSocial')){
+        ob_start();
+        $digits = '<div class="digits">'.do_shortcode('[msd-digits]').'</div>';
+        $social = do_shortcode('[msd-social]');
+        $menu = $menu.'<li class="right">'.$digits.$social.'</li>';
+        ob_end_clean();
+    }
+   return $menu;
+}
 
 /*** SIDEBARS ***/
 /**
