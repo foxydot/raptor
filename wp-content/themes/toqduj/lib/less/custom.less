@@ -22,7 +22,7 @@ header.site-header{
         div.digits{
           display: inline;
           padding: 0 1rem;
-          .customsanserif;
+          .customsansserif;
           label{
             display: none;
           }
@@ -47,7 +47,7 @@ section.banner{
     height: 300px;
     padding: 70px 500px 50px 140px;
     h3,h4{
-      .customsanserif();
+      .customsansserif();
       color: @white;
     }
     h3{
@@ -62,3 +62,97 @@ section.banner{
   }
 }
 
+.sidebar{
+  .widget_advanced_menu{
+    .menu{
+      li{
+        border: 0.5px solid @ltgrey;
+        border-right: 3px solid @beige;
+        a{
+          padding: 1rem;
+          text-transform: uppercase;
+          display: block; 
+          width: 100%;
+          color: @beige;
+          font-size: 12px;
+          font-size: 1.2rem;
+          font-weight: 400;
+          i{
+            margin-right: 2rem;
+            font-size: 14px;
+            font-size: 1.4rem;
+          }
+        }
+      }
+      li:hover{
+        background: lighten(@ltgrey,10%);
+        a{
+          text-decoration: none;
+         }
+      }
+      li.current-menu-item, li.current-menu-ancestor{
+        border-right-color: @brown;
+        a{
+          color: @green;
+        }
+      }
+    }
+  }
+}
+.sidebar-secondary{
+  padding-right: 0;
+  section.widget{
+    border: 0.5px solid @ltgrey;
+    background: lighten(@beige, 20%);
+    h4.widgettitle{
+      padding: 0.8rem;
+      text-align: center;
+      text-transform: uppercase;
+      font-weight: 400;
+      border-bottom: 3px solid @green;
+      color: @dkgrey;
+      background: @white;
+      margin: 0;
+    }
+    .gform_wrapper{
+      form{
+        .gform_body{
+          ul{
+            li{
+              margin: 1rem !important;
+              input[type="email"], input[type="text"], textarea, .ginput_complex label {
+                padding: 0.4rem;
+                font-size: 1.2rem;
+                text-transform: uppercase;
+              }
+            }
+          }
+        }
+        .gform_footer{
+          margin: 0;
+          padding: 0 1rem;
+        }
+      }
+    }
+  }
+  section.widget.you-can-help{
+    background: @beige;
+    h4.widgettitle{
+      border-bottom-color: @brown;
+    }
+    .text-body{
+      padding: 1rem;
+      color: @white;
+    }
+  }
+  section.widget.donate-today{
+    a.button{
+      margin: 0;
+      width: 100%;
+      border: 0;
+      text-align: center;
+      font-size: 18px;
+      font-size: 1.8rem;
+    }
+  }
+}
