@@ -1,0 +1,1 @@
+jQuery(document).ready(function(e){var t=e(".footer-widgets-1 div.widget").length;e(".footer-widgets-1").addClass("cols-"+t);e("#hp-callout section.widget.first-child").addClass("col-sm-8");e("#hp-callout section.widget.last-child").addClass("col-sm-4");e("#homepage-widgets .widgets-left section.widget").addClass("col-sm-4")});

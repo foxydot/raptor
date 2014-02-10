@@ -1,8 +1,147 @@
-@import 'lesshat';
 @import 'mixins';
+@font-face {
+    font-family: 'umbrageregular';
+    src: url('../fonts/umbrage2-webfont.eot');
+    src: url('../fonts/umbrage2-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/umbrage2-webfont.woff') format('woff'),
+         url('../fonts/umbrage2-webfont.ttf') format('truetype'),
+         url('../fonts/umbrage2-webfont.svg#umbrageregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+.umbrage{
+  font-family: 'umbrageregular', 'Arial Narrow',Arial, Helvetica, sans-serif;
+  font-size: 32px;
+  font-size: 3.2rem;
+  letter-spacing: -0.5px;
+  letter-spacing: -0.05rem;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+  .umbrage;
+}
+
 #hp-top{
   z-index: -30;
+  .wrap{
+    .theborder;
+    overflow: hidden;
+  }
 }
 .site-inner{
   display: none;
+}
+#hp-callout{
+  .wrap{
+    section.widget{
+      min-height: 45px;
+      min-height: 4.5rem;
+      .theborder;
+      background: @beige;
+      text-align: center;
+      color: @white;
+    }
+    section.widget.first-child{
+      border-right: 0;
+      .customsansserif;
+      font-size: 16px;
+      font-size: 1.6rem;
+      padding: 9px;
+      padding: 0.9rem;
+    }
+    section.widget.last-child{
+      background: @yellow;
+      padding: 0;
+      .readmore{
+        padding:0;
+        margin:0;
+        line-height: 1.3;
+        span{
+        .umbrage;
+        }
+      }
+    }
+  }
+}
+#homepage-widgets{
+  .wrap{
+    .widgets-left.col-sm-8,.widgets-right.col-sm-4{
+      padding: 0;
+      section.widget{
+        .widget-wrap{
+          position: relative;
+          h4.widget-title{
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 180px;
+            color: @white;
+            background: @green;
+            font-size: 36px;
+            font-size: 3.6rem;
+            text-align: center;
+            margin: 0;
+          }
+        }
+      }
+    }
+    .widgets-left{
+      section.widget{
+        display: inline-block;
+        .theborder;
+        border-right: 0;
+        background: @green;
+        padding: 0;
+      }
+      section.widget.rescue{
+        .widget-wrap{
+          h4.widget-title{
+          }
+        }
+      }
+      section.widget.learn{
+        .widget-wrap{
+          h4.widget-title{
+            background: @blue;
+          }
+        }
+      }
+      section.widget.support{
+        .widget-wrap{
+          h4.widget-title{
+            background: @red;
+          }
+        }
+      }
+    }
+    .widgets-right{
+      section.widget{
+        .theborder;
+        display: block;
+        background: @green;
+      }
+      section.widget.raptorcam{
+        .widget-wrap{
+          h4.widget-title{
+            background: none;
+            width: auto;
+            top: 30px;
+            right: 20px;
+            text-align: right;
+          }
+        }
+      }
+      section.widget.donate{
+        .widget-wrap{
+          h4.widget-title{
+            background: @beige;
+          }
+        }
+      }
+    }
+  }
 }
