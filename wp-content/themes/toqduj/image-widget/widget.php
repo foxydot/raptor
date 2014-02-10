@@ -12,6 +12,11 @@ echo $before_widget;
 
 echo $this->get_image_html( $instance, true );
 
+if($link){
+    $before_title .= '<a class="'.$this->widget_options['classname'].'-link readmore" href="'.$link.'" target="'.$linktarget.'">';
+    $after_title = '</a>' . $after_title;
+}
+
 if ( !empty( $title ) ) { echo $before_title . $title . $after_title; }
 
 if ( !empty( $description ) ) {
@@ -19,8 +24,7 @@ if ( !empty( $description ) ) {
 	echo wpautop( $description );
 	echo "</div>";
 }
-if ( $link ) {
-	$linktext = $linktext != ''?$linktext:'Read More';
+if ( $link && $linktext) {
 	echo '<div class="link"><a class="'.$this->widget_options['classname'].'-link readmore" href="'.$link.'" target="'.$linktarget.'">'.$linktext.' ></a><div class="clear"></div></div>';
 }
 echo '<div class="clear"></div>';
