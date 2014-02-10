@@ -10,9 +10,14 @@ function msdlab_add_homepage_hero_flex_sidebars(){
     'id' => 'homepage-top'
             ));
     genesis_register_sidebar(array(
-    'name' => 'Homepage Widget Area',
+    'name' => 'Homepage Widget Area Left',
     'description' => 'Homepage central widget areas',
-    'id' => 'homepage-widgets'
+    'id' => 'homepage-widgets-left'
+            )); 
+    genesis_register_sidebar(array(
+    'name' => 'Homepage Widget Area Right',
+    'description' => 'Homepage central widget areas',
+    'id' => 'homepage-widgets-right'
             )); 
 }
 
@@ -60,7 +65,12 @@ function msdlab_callout(){
 function msdlab_homepage_widgets(){
 	print '<div id="homepage-widgets" class="widget-area">';
 	print '<div class="wrap">';
-	dynamic_sidebar('homepage-widgets');
+        print '<div class="widgets-left col-sm-8">';
+        dynamic_sidebar('homepage-widgets-left');
+        print '</div>';
+        print '<div class="widgets-right col-sm-4">';
+        dynamic_sidebar('homepage-widgets-right');
+        print '</div>';
 	print '</div>';
 	print '</div>';
 }
