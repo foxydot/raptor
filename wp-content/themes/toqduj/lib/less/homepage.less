@@ -6,6 +6,16 @@
          url('../fonts/umbrage2-webfont.woff') format('woff'),
          url('../fonts/umbrage2-webfont.ttf') format('truetype'),
          url('../fonts/umbrage2-webfont.svg#umbrageregular') format('svg');
+    font-weight: 300;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'heavyweight';
+    src: url('../fonts/heavyweight.ttf.eot');
+    src: url('../fonts/heavyweight.ttf.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/heavyweight.ttf.woff') format('woff'),
+         url('../fonts/heavyweight.ttf') format('truetype'),
+         url('../fonts/heavyweight.ttf.svg#umbrageregular') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -13,8 +23,8 @@
   font-family: 'umbrageregular', 'Arial Narrow',Arial, Helvetica, sans-serif;
   font-size: 32px;
   font-size: 3.2rem;
-  letter-spacing: -0.5px;
-  letter-spacing: -0.05rem;
+  padding-top: 0.2em;
+  letter-spacing: 0.5px;
 }
 h1,
 h2,
@@ -30,6 +40,41 @@ h6{
   .wrap{
     .theborder;
     overflow: hidden;
+    .widget{
+      .widget-wrap{
+        .slide{
+          min-height: 450px;
+          .slide-content{
+            padding: 100px;
+            color: @white;
+            h1,h3{
+              color: @white;
+              margin: 0;
+              padding: 0;
+            }
+            h1{
+              font-size: 72px;
+              font-size: 7.2rem;
+            }
+            h3{
+              margin-top: 50px;
+            }
+            p, .buttons{
+              width: 50%;
+              font-size: 16px;
+              font-size: 1.6rem;
+              margin: 0;
+              .button{
+                display: inline-block;
+                .umbrage;
+                font-size: 18px;
+                font-size: 1.8rem;
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
 .site-inner{
