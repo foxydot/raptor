@@ -66,35 +66,46 @@ section.banner{
   padding-left: 0;
   .widget_advanced_menu{
     .menu{
-      li{
-        border: 0.5px solid @ltgrey;
-        border-right: 3px solid @beige;
-        a{
-          padding: 1rem;
-          text-transform: uppercase;
-          display: block; 
-          width: 100%;
-          color: @beige;
-          font-size: 12px;
-          font-size: 1.2rem;
-          font-weight: 400;
-          i{
-            margin-right: 2rem;
-            font-size: 14px;
-            font-size: 1.4rem;
-          }
-        }
+      >li{
+        display: none;
       }
-      li:hover{
-        background: lighten(@ltgrey,10%);
+      >li.current-menu-item,>li.current-menu-ancestor{
+        display: block;
         a{
           text-decoration: none;
-         }
-      }
-      li.current-menu-item, li.current-menu-ancestor{
-        border-right-color: @brown;
-        a{
-          color: @green;
+          font-size: 18px;
+          font-size: 1.8rem;
+          border-bottom: 0;
+          text-transform: uppercase;
+        }
+        li{
+          a{
+            border: 0.5px solid @ltgrey;
+            border-right: 3px solid @beige;
+            padding: 1rem;
+            text-transform: uppercase;
+            display: block; 
+            width: 100%;
+            color: @beige;
+            font-size: 12px;
+            font-size: 1.2rem;
+            font-weight: 400;
+            i{
+              margin-right: 2rem;
+              font-size: 14px;
+              font-size: 1.4rem;
+            }
+          a:hover{
+            background: lighten(@ltgrey,10%);
+            text-decoration: none;
+           }
+          }
+        }
+        li.current-menu-item{
+          a{
+            border-right-color: @brown;
+            color: @green;
+          }
         }
       }
     }

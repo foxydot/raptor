@@ -26,5 +26,5 @@ jQuery(document).ready(function($) {
 	
 	//font-awesome lists in content
     $('.entry-content ul').addClass('fa-ul').find('li').prepend('<i class="fa-li fa fa-caret-right"></i>');
-    $('.sidebar .widget_advanced_menu .menu li a').prepend('<i class="fa fa-caret-right"></i>');
+    $('.sidebar .widget_advanced_menu .menu li li a').prepend('<i class="fa fa-caret-right"></i>');
 });

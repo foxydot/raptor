@@ -124,16 +124,30 @@ Site Navigation
 
 .nav-primary {
   .wrap{
-    background-color: @brown;
+    background: url('../img/bkg-header.jpg') @brown;
     border: 1px solid @white;
-    ul{
+    >ul{
       margin: 0;
       padding-left: 140px;
       li{
         a{
           .customsansserif();
-          padding: 1rem;
+          padding: 1rem 1rem 1.2rem 1rem;
           font-weight: 500;
+        }
+        .sub-menu{
+          background: @brown;
+          .box-shadow(0 1px 10px rgba(20,20,20,0.5));
+          li{
+            a{
+              background: none;
+            }
+          }
+          li.first-child{
+            a{
+              border-top: 1px solid @white;
+            }
+          }
         }
       }
     }
