@@ -23,20 +23,15 @@ if (!class_exists('MSDBirdDisplay')) {
             add_filter( 'genesis_attr_headshot', array(&$this,'msdlab_headshot_context_filter' ));
         }
  
-        function get_ambassador_by_practice($practice_area) {
+        function get_ambassador_by_group($group) {
            $args = array(
             'posts_per_page'   => -1,
             'orderby'          => 'title',
             'order'            => 'ASC',
             'post_type'        => $this->cpt,
+            'group'            => $group
             );
             $posts = get_posts($args);
-            $i = 0;
-            foreach($posts AS $post){
-                $posts[$i]->lastname = get_post_meta($post->ID,'_ambassador__ambassador_last_name',TRUE);
-                $i++;
-            }
-            usort($posts,array(&$this,'sort_by_lastname'));
             return $posts;
         }  
         
@@ -48,70 +43,68 @@ if (!class_exists('MSDBirdDisplay')) {
             'post_type'        => $this->cpt,
             );
             $posts = get_posts($args);
-            $i = 0;
-            foreach($posts AS $post){
-                $posts[$i]->lastname = get_post_meta($post->ID,'_ambassador__team_last_name',TRUE);
-                $i++;
-            }
-            usort($posts,array(&$this,'sort_by_lastname'));
             return $posts;
         }     
         
-        function team_display($team,$attr = array()){
-            global $post,$msd_custom,$contact_info,$primary_practice_area,$jobtitle_metabox;
+        function ambassador_display($ambassadors,$attr = array()){
+            global $post,$msd_custom,$ambassador_info_metabox;
             extract($attr);
-            $headshot = get_the_post_thumbnail($team->ID,'headshot-md');
-            $terms = wp_get_post_terms($team->ID,'practice_area');
-            $primary_practice_area->the_meta($team->ID);
-            $jobtitle_metabox->the_meta($team->ID);
-            $practice_areas = '';
+            $headshot = get_the_post_thumbnail($ambassadors->ID,'headshot-md');
+            $terms = wp_get_post_terms($ambassadors->ID,'group');
+            $ambassador_info_metabox->the_meta($ambassadors->ID);
+            $groups = '';
             if(count($terms)>0){
                 foreach($terms AS $term){
-                    $practice_areas[] = $term->slug;
+                    $groups[] = $term->slug;
                 }
                 
-                $practice_areas = implode(' ', $practice_areas);
+                $groups = implode(' ', $groups);
             }
-            $mini_bio = msdlab_excerpt($team->ID);
-            $team_contact_info = '';
-            $contact_info->the_meta($team->ID);
-            $contact_info->the_field('_ambassador_phone');
-            if($contact_info->get_the_value() != ''){ 
-                $team_contact_info .= '<li class="phone"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-phone fa-stack-1x fa-inverse"></i></span>'.msd_str_fmt($contact_info->get_the_value(),'phone').'</li>';
-            } 
-            
-            $contact_info->the_field('_ambassador_mobile');
-            if($contact_info->get_the_value() != ''){
-                $team_contact_info .= '<li class="mobile"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-mobile-phone fa-stack-1x fa-inverse"></i></span> '.msd_str_fmt($contact_info->get_the_value(),'phone').'</li>';
+            $mini_bio = msdlab_excerpt($ambassadors->ID);
+            $ambassadors_info = '';
+                $ambassador_info_metabox->the_field('_bird_species');
+            if($ambassador_info_metabox->get_the_value() != ''){
+                $ambassadors_info .= '<li class="mobile"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-xxxxx fa-stack-1x fa-inverse"></i></span>$ambassador_info_metabox->get_the_value()</li>';
             }
             
-            $contact_info->the_field('_ambassador_linked_in');
-            if($contact_info->get_the_value() != ''){
-                $team_contact_info .= '<li class="linkedin"><a href="'.$contact_info->get_the_value().'"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-linkedin-square fa-stack-1x fa-inverse"></i></span> Connect</a></li>';
+        $ambassador_info_metabox->the_field('_bird_height');
+            if($ambassador_info_metabox->get_the_value() != ''){
+                $ambassadors_info .= '<li class="mobile"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-xxxxx fa-stack-1x fa-inverse"></i></span>$ambassador_info_metabox->get_the_value()</li>';
             }
             
-            $contact_info->the_field('_ambassador_bio_sheet');
-            if($contact_info->get_the_value() != ''){
-                $team_contact_info .= '<li class="vcard"><a href="'.$contact_info->get_the_value().'"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-download-alt fa-stack-1x fa-inverse"></i></span> Download Bio</a></li>';
+        $ambassador_info_metabox->the_field('_bird_weight');
+            if($ambassador_info_metabox->get_the_value() != ''){
+                $ambassadors_info .= '<li class="mobile"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-xxxxx fa-stack-1x fa-inverse"></i></span>$ambassador_info_metabox->get_the_value()</li>';
             }
             
-            $contact_info->the_field('_ambassador_email');
-            if($contact_info->get_the_value() != ''){
-                $team_contact_info .= '<li class="email"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-envelope fa-stack-1x fa-inverse"></i></span> '.msd_str_fmt($contact_info->get_the_value(),'email').'</li>';
+        $ambassador_info_metabox->the_field('_bird_wingspan');
+            if($ambassador_info_metabox->get_the_value() != ''){
+                $ambassadors_info .= '<li class="mobile"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-xxxxx fa-stack-1x fa-inverse"></i></span>$ambassador_info_metabox->get_the_value()</li>';
             }
-            $teamstr = '
-            <a class="team-member '.$practice_areas.' '.$team->post_name.'" href="'.get_post_permalink($team->ID).'">
+            
+        $ambassador_info_metabox->the_field('_bird_birthdate');
+            if($ambassador_info_metabox->get_the_value() != ''){
+                $ambassadors_info .= '<li class="mobile"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-xxxxx fa-stack-1x fa-inverse"></i></span>$ambassador_info_metabox->get_the_value()</li>';
+            }
+            
+        $ambassador_info_metabox->the_field('_bird_arrived');
+            if($ambassador_info_metabox->get_the_value() != ''){
+                $ambassadors_info .= '<li class="mobile"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-xxxxx fa-stack-1x fa-inverse"></i></span>$ambassador_info_metabox->get_the_value()</li>';
+            }
+            
+            $ambassadorsstr = '
+            <a class="team-member '.$groups.' '.$ambassadors->post_name.'" href="'.get_post_permalink($ambassadors->ID).'">
                 <div class="headshot">
                     '.$headshot.'
                 </div>
                 <div class="info">
-                    <h4>'.$team->post_title.'</h4>
+                    <h4>'.$ambassadors->post_title.'</h4>
                     <h5>'.$jobtitle_metabox->get_the_value('jobtitle').'</h5>
                     ';
-            $teamstr .= '
+            $ambassadorsstr .= '
                 </div>
             </a>';
-            return $teamstr;
+            return $ambassadorsstr;
     }   
         
         function sort_by_lastname( $a, $b ) {
@@ -162,43 +155,38 @@ if (!class_exists('MSDBirdDisplay')) {
                 return $attributes;
         }
         
-        function msd_ambassador_contact_info(){
-            global $post,$contact_info;
-            $fields = array(
-                    'phone' => 'phone',
-                    'mobile' => 'mobile-phone',
-                    'linkedin' => 'linkedin-square',
-                    'vcard' => 'download-alt',
-                    'email' => 'envelope-alt',
-            );
-            ?>
-            <ul class="team-member-contact-info">
-                <?php $contact_info->the_field('_team_phone'); ?>
-                <?php if($contact_info->get_the_value() != ''){ ?>
-                    <li class="phone"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-phone fa-stack-1x fa-inverse"></i></span> <?php //print msd_str_fmt($contact_info->get_the_value(),'phone'); ?></li>
-                <?php } ?>
-                
-                <?php $contact_info->the_field('_team_mobile'); ?>
-                <?php if($contact_info->get_the_value() != ''){ ?>
-                    <li class="mobile"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-mobile-phone fa-stack-1x fa-inverse"></i></span> <?php //print msd_str_fmt($contact_info->get_the_value(),'phone'); ?></li>
-                <?php } ?>
-                
-                <?php $contact_info->the_field('_team_linked_in'); ?>
-                <?php if($contact_info->get_the_value() != ''){ ?>
-                    <li class="linkedin"><a href="<?php print $contact_info->get_the_value(); ?>"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-linkedin-square fa-stack-1x fa-inverse"></i></span></a></li>
-                <?php } ?>
-                
-                <?php $contact_info->the_field('_team_bio_sheet'); ?>
-                <?php if($contact_info->get_the_value() != ''){ ?>
-                    <li class="vcard"><a href="<?php print $contact_info->get_the_value(); ?>"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-download-alt fa-stack-1x fa-inverse"></i></span></a></li>
-                <?php } ?>
-                
-                <?php $contact_info->the_field('_team_email'); ?>
-                <?php if($contact_info->get_the_value() != ''){ ?>
-                    <li class="email"><a href="mailto:<?php print antispambot($contact_info->get_the_value());?>" class="email"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-envelope fa-stack-1x fa-inverse"></i></span> <?php //print msd_str_fmt($contact_info->get_the_value(),'email'); ?></a></li>
-                <?php } ?>
-            </ul>
-            <?php
+        function msdlab_ambassador_info(){
+            global $post,$ambassador_info_metabox;
+            $ambassador_info_metabox->the_field('_bird_species');
+            if($ambassador_info_metabox->get_the_value() != ''){
+                $ambassadors_info .= '<li class="mobile"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-sitemap fa-stack-1x fa-inverse"></i></span>'.$ambassador_info_metabox->get_the_value().'</li>';
+            }
+            
+            $ambassador_info_metabox->the_field('_bird_height');
+            if($ambassador_info_metabox->get_the_value() != ''){
+                $ambassadors_info .= '<li class="mobile"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-arrows-v fa-stack-1x fa-inverse"></i></span> Height: '.$ambassador_info_metabox->get_the_value().' in.</li>';
+            }
+            
+            $ambassador_info_metabox->the_field('_bird_weight');
+            if($ambassador_info_metabox->get_the_value() != ''){
+                $ambassadors_info .= '<li class="mobile"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-xxxxx fa-stack-1x fa-inverse"></i></span> Weight: '.$ambassador_info_metabox->get_the_value().' lbs.</li>';
+            }
+            
+            $ambassador_info_metabox->the_field('_bird_wingspan');
+            if($ambassador_info_metabox->get_the_value() != ''){
+                $ambassadors_info .= '<li class="mobile"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-arrows-h fa-stack-1x fa-inverse"></i></span> Wingspan: '.$ambassador_info_metabox->get_the_value().' in.</li>';
+            }
+            
+            $ambassador_info_metabox->the_field('_bird_birthdate');
+            if($ambassador_info_metabox->get_the_value() != ''){
+                $ambassadors_info .= '<li class="mobile"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-xxxxx fa-stack-1x fa-inverse"></i></span> Age: '.date("Y") - $ambassador_info_metabox->get_the_value().' yrs.</li>';
+            }
+            
+            $ambassador_info_metabox->the_field('_bird_arrived');
+            if($ambassador_info_metabox->get_the_value() != ''){
+                $ambassadors_info .= '<li class="mobile"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-xxxxx fa-stack-1x fa-inverse"></i></span> Came to RAPTOR in '.$ambassador_info_metabox->get_the_value().'</li>';
+            }
+            return '<ul class="ambassador-info">'.$ambassadors_info.'</ul>';
         }
         function msd_team_additional_info(){
             global $post,$additional_info;
