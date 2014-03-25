@@ -25,6 +25,6 @@ jQuery(document).ready(function($) {
 	$('#footer-widgets').addClass('cols-'+numwidgets);
 	
 	//font-awesome lists in content
-    $('.entry-content ul').addClass('fa-ul').find('li').prepend('<i class="fa-li fa fa-caret-right"></i>');
+    $('.entry-content ul').not('.entry-content .gform_wrapper ul').addClass('fa-ul').find('li').prepend('<i class="fa-li fa fa-caret-right"></i>');
     $('.sidebar .widget_advanced_menu .menu li li a').prepend('<i class="fa fa-caret-right"></i>');
 });
