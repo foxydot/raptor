@@ -86,7 +86,7 @@ if (!class_exists('MSDCustomCPT')) {
         /**
         * PHP 4 Compatible Constructor
         */
-        function MSDLawfirmCPT(){$this->__construct();}
+        function MSDCustomCPT(){$this->__construct();}
         
         /**
         * PHP 5 Constructor
@@ -106,23 +106,13 @@ if (!class_exists('MSDCustomCPT')) {
                 register_activation_hook( __FILE__, create_function('','flush_rewrite_rules();') );
                 register_deactivation_hook( __FILE__, create_function('','flush_rewrite_rules();') );
             }
-            /*if(class_exists('MSDLocationCPT')){
-                $this->location_class = new MSDLocationCPT();
+            if(class_exists('MSDBirdCPT')){ 
+                $this->bird_class = new MSDBirdCPT();
                 register_activation_hook( __FILE__, create_function('','flush_rewrite_rules();') );
                 register_deactivation_hook( __FILE__, create_function('','flush_rewrite_rules();') );
             }
-            if(class_exists('MSDProjectCPT')){
-                $this->project_class = new MSDProjectCPT();
-                register_activation_hook( __FILE__, create_function('','flush_rewrite_rules();') );
-                register_deactivation_hook( __FILE__, create_function('','flush_rewrite_rules();') );
-            }*/
-            if(class_exists('MSDTeamCPT')){
-                $this->cpt_class = new MSDTeamCPT();
-                register_activation_hook( __FILE__, create_function('','flush_rewrite_rules();') );
-                register_deactivation_hook( __FILE__, create_function('','flush_rewrite_rules();') );
-            }
-            if(class_exists('MSDTeamCPTDisplay')){
-                $this->display_class = new MSDTeamCPTDisplay();
+            if(class_exists('MSDBirdCPTDisplay')){
+                $this->bird_display_class = new MSDBirdCPTDisplay();
             }
         }
 
