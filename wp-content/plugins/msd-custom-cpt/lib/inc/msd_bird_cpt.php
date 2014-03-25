@@ -18,7 +18,7 @@ if (!class_exists('MSDBirdCPT')) {
             $this->plugin_url = plugin_dir_url('msd-custom-cpt/msd-custom-cpt.php');
             $this->plugin_path = plugin_dir_path('msd-custom-cpt/msd-custom-cpt.php');
             //Actions
-            add_action( 'init', array(&$this,'register_tax_practice_areas') );
+            add_action( 'init', array(&$this,'register_tax_group') );
             add_action( 'init', array(&$this,'register_cpt_ambassador') );
             add_action( 'init', array(&$this,'add_custom_metaboxes') );
             add_action('admin_head', array(&$this,'plugin_header'));
@@ -33,24 +33,24 @@ if (!class_exists('MSDBirdCPT')) {
             add_filter( 'enter_title_here', array(&$this,'change_default_title') );
         }
         
-        public function register_tax_practice_areas() {
+        public function register_tax_group() {
         
             $labels = array( 
-                'name' => _x( 'Practice areas', 'practice-areas' ),
-                'singular_name' => _x( 'Practice area', 'practice-areas' ),
-                'search_items' => _x( 'Search practice areas', 'practice-areas' ),
-                'popular_items' => _x( 'Popular practice areas', 'practice-areas' ),
-                'all_items' => _x( 'All practice areas', 'practice-areas' ),
-                'parent_item' => _x( 'Parent practice area', 'practice-areas' ),
-                'parent_item_colon' => _x( 'Parent practice area:', 'practice-areas' ),
-                'edit_item' => _x( 'Edit practice area', 'practice-areas' ),
-                'update_item' => _x( 'Update practice area', 'practice-areas' ),
-                'add_new_item' => _x( 'Add new practice area', 'practice-areas' ),
-                'new_item_name' => _x( 'New practice area name', 'practice-areas' ),
-                'separate_items_with_commas' => _x( 'Separate practice areas with commas', 'practice-areas' ),
-                'add_or_remove_items' => _x( 'Add or remove practice areas', 'practice-areas' ),
-                'choose_from_most_used' => _x( 'Choose from the most used practice areas', 'practice-areas' ),
-                'menu_name' => _x( 'Practice areas', 'practice-areas' ),
+                'name' => _x( 'Groups', 'group' ),
+                'singular_name' => _x( 'Group', 'group' ),
+                'search_items' => _x( 'Search groups', 'group' ),
+                'popular_items' => _x( 'Popular groups', 'group' ),
+                'all_items' => _x( 'All groups', 'group' ),
+                'parent_item' => _x( 'Parent group', 'group' ),
+                'parent_item_colon' => _x( 'Parent group:', 'group' ),
+                'edit_item' => _x( 'Edit group', 'group' ),
+                'update_item' => _x( 'Update group', 'group' ),
+                'add_new_item' => _x( 'Add new group', 'group' ),
+                'new_item_name' => _x( 'New group name', 'group' ),
+                'separate_items_with_commas' => _x( 'Separate groups with commas', 'group' ),
+                'add_or_remove_items' => _x( 'Add or remove groups', 'group' ),
+                'choose_from_most_used' => _x( 'Choose from the most used groups', 'group' ),
+                'menu_name' => _x( 'Groups', 'group' ),
             );
         
             $args = array( 
@@ -61,11 +61,11 @@ if (!class_exists('MSDBirdCPT')) {
                 'show_tagcloud' => false,
                 'hierarchical' => true, //we want a "category" style taxonomy, but may have to restrict selection via a dropdown or something.
         
-                'rewrite' => array('slug'=>'practice-area','with_front'=>false),
+                'rewrite' => array('slug'=>'group','with_front'=>false),
                 'query_var' => true
             );
         
-            register_taxonomy( 'practice_area', array($this->cpt), $args );
+            register_taxonomy( 'group', array($this->cpt), $args );
         }
         
         function register_cpt_ambassador() {
@@ -90,7 +90,7 @@ if (!class_exists('MSDBirdCPT')) {
                 'hierarchical' => false,
                 'description' => 'Ambassador',
                 'supports' => array( 'title', 'editor', 'author', 'thumbnail', 'custom-fields' ),
-                'taxonomies' => array( 'practice_area' ),
+                'taxonomies' => array( 'group' ),
                 'public' => true,
                 'show_ui' => true,
                 'show_in_menu' => true,
@@ -167,8 +167,7 @@ if (!class_exists('MSDBirdCPT')) {
             global $current_screen;
             if($current_screen->post_type == $this->cpt){
                 ?><script type="text/javascript">
-                        jQuery('#postdivrich').before(jQuery('#_contact_info_metabox'));
-                        jQuery('#titlediv').after(jQuery('#_jobtitle_metabox'));
+                        jQuery('#postdivrich').after(jQuery('#_ambassador_info_metabox'));
                     </script><?php
             }
         }
@@ -194,15 +193,15 @@ if (!class_exists('MSDBirdCPT')) {
         } 
         
         function add_custom_metaboxes(){
-            global $jobtitle_metabox;
-            $jobtitle_metabox = new WPAlchemy_MetaBox(array
+            global $ambassador_info_metabox;
+            $ambassador_info_metabox = new WPAlchemy_MetaBox(array
             (
-                'id' => '_jobtitle',
-                'title' => 'Title/Position',
+                'id' => '_ambassador_info',
+                'title' => 'Ambassador Info',
                 'types' => array($this->cpt),
                 'context' => 'normal', // same as above, defaults to "normal"
                 'priority' => 'high', // same as above, defaults to "high"
-                'template' => WP_PLUGIN_DIR.'/'.plugin_dir_path('msd-custom-cpt/msd-custom-cpt.php') . '/lib/template/jobtitle-meta.php',
+                'template' => WP_PLUGIN_DIR.'/'.plugin_dir_path('msd-custom-cpt/msd-custom-cpt.php') . '/lib/template/ambassador-info.php',
                 'autosave' => TRUE,
                 'mode' => WPALCHEMY_MODE_EXTRACT, // defaults to WPALCHEMY_MODE_ARRAY
                 'prefix' => '_msdlab_' // defaults to NULL

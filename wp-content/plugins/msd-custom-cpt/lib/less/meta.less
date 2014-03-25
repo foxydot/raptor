@@ -1,7 +1,7 @@
 @import 'elements';
 @import 'mixins';
 
-.location_meta_control,.team_meta_control,.meta_control
+.meta_control
  {
 	.description{ display:none; }
 
@@ -24,13 +24,17 @@ label span
 span
 { color:#999; display:block; }
  
-.ginput_container {
+.input_container {
 	width: 85%;
 	float: left;
 }
+
 textarea, input[type='text'], select
 { display:inline;margin-bottom:3px; width:90%; }
 
+input[type='text'].small, select.small{
+  width: 100px;
+}
 .mceIframeContainer {background:@white;}
 
 h4
