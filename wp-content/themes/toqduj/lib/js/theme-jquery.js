@@ -27,9 +27,7 @@ jQuery(document).ready(function($) {
 	//font-awesome lists in content
     $('.entry-content ul').not('.entry-content .gform_wrapper ul').addClass('fa-ul').find('li').prepend('<i class="fa-li fa fa-caret-right"></i>');
     $('.sidebar .widget_advanced_menu .menu li li a').prepend('<i class="fa fa-caret-right"></i>');
-});
-
-    jQuery(document).ready(function($) {    
+    
     // add target="_blank" to all *external* 
     //create array of all *internal* urls that should NOT go to a separate window
     var internal_urls = Array('raptorinc.org','www.raptorinc.org','raptor.msdlab2.com','127.0.0.1');
@@ -50,21 +48,33 @@ jQuery(document).ready(function($) {
         }
     });
 });
-function stripos(f_haystack, f_needle, f_offset) {
-  //  discuss at: http://phpjs.org/functions/stripos/
-  // original by: Martijn Wieringa
-  //  revised by: Onno Marsman
-  //   example 1: stripos('ABC', 'a');
-  //   returns 1: 0
 
-  var haystack = (f_haystack + '')
-    .toLowerCase();
-  var needle = (f_needle + '')
-    .toLowerCase();
-  var index = 0;
+function strripos(haystack, needle, offset) {
+  //  discuss at: http://phpjs.org/functions/strripos/
+  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // bugfixed by: Onno Marsman
+  // bugfixed by: Brett Zamir (http://brett-zamir.me)
+  //    input by: saulius
+  //   example 1: strripos('Kevin van Zonneveld', 'E');
+  //   returns 1: 16
 
-  if ((index = haystack.indexOf(needle, f_offset)) !== -1) {
-    return index;
+  haystack = (haystack + '')
+    .toLowerCase();
+  needle = (needle + '')
+    .toLowerCase();
+
+  var i = -1;
+  if (offset) {
+    i = (haystack + '')
+      .slice(offset)
+      .lastIndexOf(needle); // strrpos' offset indicates starting point of range till end,
+    // while lastIndexOf's optional 2nd argument indicates ending point of range from the beginning
+    if (i !== -1) {
+      i += offset;
+    }
+  } else {
+    i = (haystack + '')
+      .lastIndexOf(needle);
   }
-  return false;
+  return i >= 0 ? i : false;
 }
