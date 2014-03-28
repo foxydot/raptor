@@ -11,23 +11,35 @@ function msdlab_page_banner(){
     if(is_front_page())
         return;
     global $post,$banner_metabox;
-    $background = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'page_banner' );
     if(is_single() && is_cpt('ambassador')){
         global $ambassador_info_metabox;
+        $background = '';
         $ambassador_info_metabox->the_meta($post->ID);
         $title = $post->post_title;
         $subtitle = $ambassador_info_metabox->get_the_value('_bird_species');
+        $image = get_the_post_thumbnail($post->ID, 'medium');
+    } elseif(is_archive() && is_cpt('ambassador')){
+        $learn_post = get_page_by_title('Learn');
+        $featured_image = wp_get_attachment_image_src( get_post_thumbnail_id($learn_post->ID), 'page_banner' );
+        $background = $featured_image[0];
+        $banner_metabox->the_meta();
+        $title = 'Ambassadors';
+        $image = '';
     } else {
+        $featured_image = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'page_banner' );
+        $background = $featured_image[0];
         $banner_metabox->the_meta();
         $title = $banner_metabox->get_the_value('title');
         $subtitle = $banner_metabox->get_the_value('subtitle');
+        $image = '';
     }
     $title = $title != ''?sprintf( '<h3>%s</h3>', apply_filters( 'genesis_post_title_text', $title ) ):'';
     $subtitle = $subtitle != ''?sprintf( '<h4>%s</h4>', apply_filters( 'genesis_post_title_text', $subtitle ) ):'';
     $ret = '<section class="banner">
-        <div class="wrap" style="background-image:url('.$background[0].')">
+        <div class="wrap" style="background-image:url('.$background.')">
             '.$title.
-            $subtitle.'
+            $subtitle.
+            $image.'
         </wrap>
        </section>';
     print $ret;
