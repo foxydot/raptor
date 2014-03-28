@@ -102,7 +102,7 @@ if (!class_exists('MSDBirdCPT')) {
                 'has_archive' => true,
                 'query_var' => true,
                 'can_export' => true,
-                'rewrite' => array('slug'=>'ambassadors','with_front'=>false),
+                'rewrite' => array('slug'=>'learn/ambassadors','with_front'=>false),
                 'capability_type' => 'post'
             );
         
