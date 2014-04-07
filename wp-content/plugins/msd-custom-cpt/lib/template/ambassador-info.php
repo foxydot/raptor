@@ -51,7 +51,7 @@
        <div class="input_container">
            <select class="small" id="<?php $mb->the_name(); ?>" name="<?php $mb->the_name(); ?>">
                <option value="">Select</option>;
-               <?php for($y=1990;$y<2030;$y++){
+               <?php for($y=1980;$y<2030;$y++){
                    print '<option value="'.$y.'"'.$mb->the_select_state($y).'>'.$y.'</option>';
                } ?>
                
