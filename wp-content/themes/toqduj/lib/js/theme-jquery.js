@@ -30,7 +30,7 @@ jQuery(document).ready(function($) {
     
     // add target="_blank" to all *external* 
     //create array of all *internal* urls that should NOT go to a separate window
-    var internal_urls = Array('raptorinc.org','www.raptorinc.org','raptor.msdlab2.com','127.0.0.1');
+    var internal_urls = Array('raptor.adv','raptorinc.org','www.raptorinc.org','raptor.msdlab2.com','127.0.0.1');
     $('a').attr('target',function(){
         var url = $(this).attr('href');
         var target = $(this).attr('target');
@@ -46,6 +46,9 @@ jQuery(document).ready(function($) {
             }
             return '_blank';
         }
+    });
+    $('.widgetGuts form dl dt').hide(0,function(){
+        $(this).next('dd').find('input').attr('placeholder',$(this).find('label').html());
     });
 });
 
