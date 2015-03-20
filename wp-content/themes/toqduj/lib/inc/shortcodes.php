@@ -1,4 +1,15 @@
 <?php
+add_shortcode('video-stream','msdlab_hardcoded_video_streams');
+function msdlab_hardcoded_video_streams($atts, $content = null){
+    extract( shortcode_atts( array(
+      'id' => null,
+      'width' => '640',
+      'height' => '440'
+      ), $atts ) );
+      return '
+      <script type="text/javascript" src="//'.$id.'.click2stream.com/?type=javascript&width='.$width.'&height='.$height.'"></script><div id="player_'.$id.'"></div>';
+}
+
 add_shortcode('button','msdlab_button_function');
 function msdlab_button_function($atts, $content = null){	
 	extract( shortcode_atts( array(
